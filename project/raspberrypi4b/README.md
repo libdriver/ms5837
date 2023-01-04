@@ -1,10 +1,10 @@
-### 1. Chip
+### 1. Board
 
-#### 1.1 Chip Info
+#### 1.1 Board Info
 
-chip name : Raspberry Pi 4B.
+Board Name: Raspberry Pi 4B.
 
-iic pin: SCL/SDA GPIO3/GPIO2.
+IIC Pin: SCL/SDA GPIO3/GPIO2.
 
 ### 2. Install
 
@@ -74,17 +74,35 @@ find_package(ms5837 REQUIRED)
 
 #### 3.1 Command Instruction
 
-​           ms5837  is a basic command which can test all ms5837 driver function:
+1. Show ms5837 chip and driver information.
 
-​           -i        show ms5837 chip and driver information.
+   ```shell
+   ms5837 (-i | --information)
+   ```
 
-​           -h       show ms5837  help.
+2. Show ms5837  help.
 
-​           -p       show ms5837 pin connections of the current board.
+   ```shell
+   ms5837 (-h | --help)
+   ```
 
-​           -t read <times>  -type (02BA01 | 02BA21 | 30BA26)        run ms5837  read test. times is the test times.
+3. Show ms5837 pin connections of the current board.
 
-​           -c read <times>  -type (02BA01 | 02BA21 | 30BA26)        run ms5837 read function. times is the read times.
+   ```shell
+   ms5837 (-p | --port)
+   ```
+
+4. Run ms5837  read test, num is the test times.
+
+   ```shell
+   ms5837 (-t read | --test=read) [--type=<02BA01 | 02BA21 | 30BA26>] [--times=<num>]
+   ```
+
+5. Run ms5837 read function, num is the read times.
+
+   ```shell
+   ms5837 (-e read | --example=read) [--type=<02BA01 | 02BA21 | 30BA26>] [--times=<num>]
+   ```
 
 #### 3.2 Command Example
 
@@ -110,9 +128,8 @@ ms5837: SDA connected to GPIO2.
 ```
 
 ```shell
-./ms5837 -t read 3 -type 02BA01
+./ms5837 -t read --type=02BA01 --times=3
 
-ms5837: 02BA01 type.
 ms5837: chip is TE MS5837.
 ms5837: manufacturer is TE.
 ms5837: interface is IIC.
@@ -124,113 +141,120 @@ ms5837: max temperature is 85.0C.
 ms5837: min temperature is -40.0C.
 ms5837: start read test.
 ms5837: osr 256.
-ms5837: temperature is 27.29C.
-ms5837: pressure is 1002.63mbar.
-ms5837: pressure is 1002.63mbar.
-ms5837: temperature is 27.31C.
-ms5837: temperature is 27.27C.
-ms5837: pressure is 1002.59mbar.
-ms5837: pressure is 1002.59mbar.
-ms5837: temperature is 27.27C.
-ms5837: temperature is 27.25C.
-ms5837: pressure is 1002.56mbar.
-ms5837: pressure is 1002.76mbar.
-ms5837: temperature is 27.25C.
+ms5837: temperature is 30.02C.
+ms5837: pressure is 1018.89mbar.
+ms5837: pressure is 1019.13mbar.
+ms5837: temperature is 30.02C.
+ms5837: temperature is 30.02C.
+ms5837: pressure is 1019.10mbar.
+ms5837: pressure is 1019.26mbar.
+ms5837: temperature is 30.00C.
+ms5837: temperature is 30.00C.
+ms5837: pressure is 1019.06mbar.
+ms5837: pressure is 1019.02mbar.
+ms5837: temperature is 30.00C.
 ms5837: osr 512.
-ms5837: temperature is 27.24C.
-ms5837: pressure is 1002.72mbar.
-ms5837: pressure is 1002.89mbar.
-ms5837: temperature is 27.22C.
-ms5837: temperature is 27.22C.
-ms5837: pressure is 1002.48mbar.
-ms5837: pressure is 1002.69mbar.
-ms5837: temperature is 27.20C.
-ms5837: temperature is 27.20C.
-ms5837: pressure is 1002.85mbar.
-ms5837: pressure is 1002.89mbar.
-ms5837: temperature is 27.20C.
+ms5837: temperature is 30.02C.
+ms5837: pressure is 1019.10mbar.
+ms5837: pressure is 1019.06mbar.
+ms5837: temperature is 29.98C.
+ms5837: temperature is 29.98C.
+ms5837: pressure is 1019.02mbar.
+ms5837: pressure is 1019.19mbar.
+ms5837: temperature is 29.95C.
+ms5837: temperature is 29.95C.
+ms5837: pressure is 1019.15mbar.
+ms5837: pressure is 1019.15mbar.
+ms5837: temperature is 29.95C.
 ms5837: osr 1024.
-ms5837: temperature is 27.21C.
-ms5837: pressure is 1002.92mbar.
-ms5837: pressure is 1002.76mbar.
-ms5837: temperature is 27.19C.
-ms5837: temperature is 27.19C.
-ms5837: pressure is 1002.84mbar.
-ms5837: pressure is 1002.74mbar.
-ms5837: temperature is 27.19C.
-ms5837: temperature is 27.21C.
-ms5837: pressure is 1002.67mbar.
-ms5837: pressure is 1002.80mbar.
-ms5837: temperature is 27.23C.
+ms5837: temperature is 29.91C.
+ms5837: pressure is 1019.17mbar.
+ms5837: pressure is 1019.25mbar.
+ms5837: temperature is 29.87C.
+ms5837: temperature is 29.86C.
+ms5837: pressure is 1019.16mbar.
+ms5837: pressure is 1019.20mbar.
+ms5837: temperature is 29.85C.
+ms5837: temperature is 29.85C.
+ms5837: pressure is 1019.14mbar.
+ms5837: pressure is 1019.25mbar.
+ms5837: temperature is 29.86C.
 ms5837: osr 2048.
-ms5837: temperature is 27.23C.
-ms5837: pressure is 1002.81mbar.
-ms5837: pressure is 1002.79mbar.
-ms5837: temperature is 27.22C.
-ms5837: temperature is 27.22C.
-ms5837: pressure is 1002.80mbar.
-ms5837: pressure is 1002.77mbar.
-ms5837: temperature is 27.25C.
-ms5837: temperature is 27.25C.
-ms5837: pressure is 1002.76mbar.
-ms5837: pressure is 1002.76mbar.
-ms5837: temperature is 27.26C.
+ms5837: temperature is 29.85C.
+ms5837: pressure is 1019.19mbar.
+ms5837: pressure is 1019.19mbar.
+ms5837: temperature is 29.85C.
+ms5837: temperature is 29.82C.
+ms5837: pressure is 1019.24mbar.
+ms5837: pressure is 1019.09mbar.
+ms5837: temperature is 29.83C.
+ms5837: temperature is 29.82C.
+ms5837: pressure is 1019.23mbar.
+ms5837: pressure is 1019.16mbar.
+ms5837: temperature is 29.81C.
 ms5837: osr 4096.
-ms5837: temperature is 27.26C.
-ms5837: pressure is 1002.91mbar.
-ms5837: pressure is 1002.86mbar.
-ms5837: temperature is 27.27C.
-ms5837: temperature is 27.27C.
-ms5837: pressure is 1002.96mbar.
-ms5837: pressure is 1002.97mbar.
-ms5837: temperature is 27.27C.
-ms5837: temperature is 27.27C.
-ms5837: pressure is 1002.90mbar.
-ms5837: pressure is 1002.93mbar.
-ms5837: temperature is 27.27C.
+ms5837: temperature is 29.81C.
+ms5837: pressure is 1019.33mbar.
+ms5837: pressure is 1019.29mbar.
+ms5837: temperature is 29.79C.
+ms5837: temperature is 29.79C.
+ms5837: pressure is 1019.33mbar.
+ms5837: pressure is 1019.33mbar.
+ms5837: temperature is 29.78C.
+ms5837: temperature is 29.77C.
+ms5837: pressure is 1019.29mbar.
+ms5837: pressure is 1019.33mbar.
+ms5837: temperature is 29.77C.
 ms5837: osr 8192.
-ms5837: temperature is 27.27C.
-ms5837: pressure is 1003.00mbar.
-ms5837: pressure is 1002.91mbar.
-ms5837: temperature is 27.26C.
-ms5837: temperature is 27.27C.
-ms5837: pressure is 1002.94mbar.
-ms5837: pressure is 1002.91mbar.
-ms5837: temperature is 27.26C.
-ms5837: temperature is 27.26C.
-ms5837: pressure is 1002.96mbar.
-ms5837: pressure is 1002.95mbar.
-ms5837: temperature is 27.26C.
+ms5837: temperature is 29.75C.
+ms5837: pressure is 1019.31mbar.
+ms5837: pressure is 1019.21mbar.
+ms5837: temperature is 29.74C.
+ms5837: temperature is 29.73C.
+ms5837: pressure is 1019.27mbar.
+ms5837: pressure is 1019.25mbar.
+ms5837: temperature is 29.70C.
+ms5837: temperature is 29.69C.
+ms5837: pressure is 1019.33mbar.
+ms5837: pressure is 1019.31mbar.
+ms5837: temperature is 29.66C.
 ms5837: finish read test.
 ```
 
 ```shell
-./ms5837 -c read 3 -type 02BA01
+./ms5837 -e read --type=02BA01 --times=3
 
-ms5837: 02BA01 type.
 ms5837: 1/3.
-ms5837: temperature is 27.06C.
-ms5837: pressure is 1002.95mbar.
+ms5837: temperature is 29.52C.
+ms5837: pressure is 1019.23mbar.
 ms5837: 2/3.
-ms5837: temperature is 27.04C.
-ms5837: pressure is 1002.98mbar.
+ms5837: temperature is 29.52C.
+ms5837: pressure is 1019.22mbar.
 ms5837: 3/3.
-ms5837: temperature is 27.04C.
-ms5837: pressure is 1002.96mbar.
+ms5837: temperature is 29.52C.
+ms5837: pressure is 1019.22mbar.
 ```
 
 ```shell
 ./ms5837 -h
 
-ms5837 -i
-	show ms5837 chip and driver information.
-ms5837 -h
-	show ms5837 help.
-ms5837 -p
-	show ms5837 pin connections of the current board.
-ms5837 -t read <times> -type (02BA01 | 02BA21 | 30BA26)
-	run ms5837 read test.times is the test times.
-ms5837 -c read <times> -type (02BA01 | 02BA21 | 30BA26)
-	run ms5837 read function.times is the read times.
+Usage:
+  ms5837 (-i | --information)
+  ms5837 (-h | --help)
+  ms5837 (-p | --port)
+  ms5837 (-t read | --test=read) [--type=<02BA01 | 02BA21 | 30BA26>] [--times=<num>]
+  ms5837 (-e read | --example=read) [--type=<02BA01 | 02BA21 | 30BA26>] [--times=<num>]
+
+Options:
+  -e <read>, --example=<read>
+                       Run the driver example.
+  -h, --help           Show the help.
+  -i, --information    Show the chip information.
+  -p, --port           Display the pin connections of the current board.
+  -t <read>, --test=<read>
+                       Run the driver test.
+      --times=<num>    Set the running times.([default: 3])
+      --type=<02BA01 | 02BA21 | 30BA26>
+                       Set the chip type.([default: 02BA01])
 ```
 

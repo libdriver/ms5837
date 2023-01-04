@@ -614,7 +614,7 @@ uint8_t ms5837_set_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t osr)
 
 /**
  * @brief      read the temperature and pressure
- * @param[in]  *handle points to a ms5837 handle structure
+ * @param[in]  *handle points to an ms5837 handle structure
  * @param[out] *temperature_raw points to a raw temperature buffer
  * @param[out] *temperature_c points to a converted temperature buffer
  * @param[out] *pressure_raw points to a raw pressure buffer
@@ -723,7 +723,7 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
 
 /**
  * @brief      read the pressure
- * @param[in]  *handle points to a ms5837 handle structure
+ * @param[in]  *handle points to an ms5837 handle structure
  * @param[out] *pressure_raw points to a raw pressure buffer
  * @param[out] *pressure_mbar points to a converted pressure buffer
  * @return     status code
@@ -831,7 +831,7 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
 
 /**
  * @brief      read the temperature
- * @param[in]  *handle points to a ms5837 handle structure
+ * @param[in]  *handle points to an ms5837 handle structure
  * @param[out] *temperature_raw points to a raw temperature buffer
  * @param[out] *temperature_c points to a converted temperature buffer
  * @return     status code
