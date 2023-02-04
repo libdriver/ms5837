@@ -65,7 +65,7 @@ uint8_t ms5837(uint8_t argc, char **argv)
         {"type", required_argument, NULL, 2},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     ms5837_type_t chip_type = MS5837_TYPE_02BA01;
     
@@ -325,7 +325,7 @@ int main(uint8_t argc, char **argv)
     }
     else
     {
-        ms5837_interface_debug_print("ms5837: unknow status code.\n");
+        ms5837_interface_debug_print("ms5837: unknown status code.\n");
     }
 
     return 0;
