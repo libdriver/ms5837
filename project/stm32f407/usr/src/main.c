@@ -75,7 +75,7 @@ uint8_t ms5837(uint8_t argc, char **argv)
         {"type", required_argument, NULL, 2},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     ms5837_type_t chip_type = MS5837_TYPE_02BA01;
     
@@ -325,7 +325,7 @@ int main(void)
     /* uart init */
     uart_init(115200);
     
-    /* shell init && register ms5837 fuction */
+    /* shell init && register ms5837 function */
     shell_init();
     shell_register("ms5837", ms5837);
     uart_print("ms5837: welcome to libdriver ms5837.\n");
@@ -348,7 +348,7 @@ int main(void)
             }
             else if (res == 2)
             {
-                uart_print("ms5837: unknow command.\n");
+                uart_print("ms5837: unknown command.\n");
             }
             else if (res == 3)
             {
@@ -364,7 +364,7 @@ int main(void)
             }
             else
             {
-                uart_print("ms5837: unknow status code.\n");
+                uart_print("ms5837: unknown status code.\n");
             }
             uart_flush();
         }
