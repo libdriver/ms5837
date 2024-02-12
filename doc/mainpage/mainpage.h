@@ -1,6 +1,6 @@
 /**
  * @mainpage  LibDriver MS5837
- * @brief     libdriver ms5837 is a full function driver of ms5837 and it can run in both MCU and Linux platform.
+ * @brief     LibDriver MS5837 is a full function driver of MS5837 and it can run in both MCU and Linux platform.
  * @version   1.0.0
  * @author    Shifeng Li
  *
