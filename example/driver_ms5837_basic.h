@@ -58,7 +58,7 @@ extern "C"{
 
 /**
  * @brief     basic example init
- * @param[in] type is the device type
+ * @param[in] type device type
  * @return    status code
  *            - 0 success
  *            - 1 init failed
@@ -77,8 +77,8 @@ uint8_t ms5837_basic_deinit(void);
 
 /**
  * @brief      basic example read
- * @param[out] *temperature_c points to a converted temperature buffer
- * @param[out] *pressure_mbar points to a converted pressure buffer
+ * @param[out] *temperature_c pointer to a converted temperature buffer
+ * @param[out] *pressure_mbar pointer to a converted pressure buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed

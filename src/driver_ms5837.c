@@ -64,10 +64,10 @@
 
 /**
  * @brief      read bytes
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[in]  reg is the iic register address
- * @param[out] *data points to a data buffer
- * @param[in]  len is the data length
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[in]  reg iic register address
+ * @param[out] *data pointer to a data buffer
+ * @param[in]  len data length
  * @return     status code
  *             - 0 success
  *             - 1 read failed
@@ -87,10 +87,10 @@ static uint8_t a_ms5837_iic_read(ms5837_handle_t *handle, uint8_t reg, uint8_t *
 
 /**
  * @brief     write bytes
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] reg is the iic register address
- * @param[in] *data points to a data buffer
- * @param[in] len is the data length
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] reg iic register address
+ * @param[in] *data pointer to a data buffer
+ * @param[in] len data length
  * @return    status code
  *            - 0 success
  *            - 1 write failed
@@ -110,7 +110,7 @@ static uint8_t a_ms5837_iic_write(ms5837_handle_t *handle, uint8_t reg, uint8_t 
 
 /**
  * @brief     get the crc4
- * @param[in] *n_prom points to a prom buffer
+ * @param[in] *n_prom pointer to a prom buffer
  * @return    crc code
  * @note      none
  */
@@ -151,11 +151,11 @@ static uint8_t a_ms5837_crc4(uint16_t n_prom[8])
 
 /**
  * @brief     calculate temperature and pressure
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] d2_temp is the temperature raw data
- * @param[in] *temperature_c points to a temperature buffer
- * @param[in] d1_press is the pressure raw data
- * @param[in] *pressure_mbar points to a pressure buffer
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] d2_temp temperature raw data
+ * @param[in] *temperature_c pointer to a temperature buffer
+ * @param[in] d1_press pressure raw data
+ * @param[in] *pressure_mbar pointer to a pressure buffer
  * @note      none
  */
 static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uint32_t d2_temp, float *temperature_c, 
@@ -233,9 +233,9 @@ static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uin
 
 /**
  * @brief     calculate temperature
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] d2_temp is the temperature raw data
- * @param[in] *temperature_c points to a temperature buffer
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] d2_temp temperature raw data
+ * @param[in] *temperature_c pointer to a temperature buffer
  * @note      none
  */
 static void a_ms5837_calculate_temperature(ms5837_handle_t *handle, uint32_t d2_temp, float *temperature_c)
@@ -270,7 +270,7 @@ static void a_ms5837_calculate_temperature(ms5837_handle_t *handle, uint32_t d2_
 
 /**
  * @brief     initialize the chip
- * @param[in] *handle points to an ms5837 handle structure
+ * @param[in] *handle pointer to an ms5837 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic initialization failed
@@ -399,7 +399,7 @@ uint8_t ms5837_init(ms5837_handle_t *handle)
 
 /**
  * @brief     close the chip
- * @param[in] *handle points to an ms5837 handle structure
+ * @param[in] *handle pointer to an ms5837 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic deinit failed
@@ -440,8 +440,8 @@ uint8_t ms5837_deinit(ms5837_handle_t *handle)
 
 /**
  * @brief      get the device type
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *type points to a type buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *type pointer to a type buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -466,8 +466,8 @@ uint8_t ms5837_get_type(ms5837_handle_t *handle, ms5837_type_t *type)
 
 /**
  * @brief     set the device type
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] type is the device type
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] type device type
  * @return    status code
  *            - 0 success
  *            - 2 handle is NULL
@@ -492,8 +492,8 @@ uint8_t ms5837_set_type(ms5837_handle_t *handle, ms5837_type_t type)
 
 /**
  * @brief      get the adc temperature osr
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *osr points to an osr buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *osr pointer to an osr buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -518,8 +518,8 @@ uint8_t ms5837_get_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t *osr)
 
 /**
  * @brief     set the adc temperature osr
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] osr is the adc osr
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] osr adc osr
  * @return    status code
  *            - 0 success
  *            - 2 handle is NULL
@@ -553,8 +553,8 @@ uint8_t ms5837_set_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t osr)
 
 /**
  * @brief      get the adc pressure osr
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *osr points to an osr buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *osr pointer to an osr buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -579,8 +579,8 @@ uint8_t ms5837_get_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t *osr)
 
 /**
  * @brief     set the adc pressure osr
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] osr is the adc osr
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] osr adc osr
  * @return    status code
  *            - 0 success
  *            - 2 handle is NULL
@@ -614,11 +614,11 @@ uint8_t ms5837_set_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t osr)
 
 /**
  * @brief      read the temperature and pressure
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *temperature_raw points to a raw temperature buffer
- * @param[out] *temperature_c points to a converted temperature buffer
- * @param[out] *pressure_raw points to a raw pressure buffer
- * @param[out] *pressure_mbar points to a converted pressure buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *temperature_raw pointer to a raw temperature buffer
+ * @param[out] *temperature_c pointer to a converted temperature buffer
+ * @param[out] *pressure_raw pointer to a raw pressure buffer
+ * @param[out] *pressure_mbar pointer to a converted pressure buffer
  * @return     status code
  *             - 0 success
  *             - 1 read temperature pressure failed
@@ -723,9 +723,9 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
 
 /**
  * @brief      read the pressure
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *pressure_raw points to a raw pressure buffer
- * @param[out] *pressure_mbar points to a converted pressure buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *pressure_raw pointer to a raw pressure buffer
+ * @param[out] *pressure_mbar pointer to a converted pressure buffer
  * @return     status code
  *             - 0 success
  *             - 1 read pressure failed
@@ -831,9 +831,9 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
 
 /**
  * @brief      read the temperature
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[out] *temperature_raw points to a raw temperature buffer
- * @param[out] *temperature_c points to a converted temperature buffer
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[out] *temperature_raw pointer to a raw temperature buffer
+ * @param[out] *temperature_c pointer to a converted temperature buffer
  * @return     status code
  *             - 0 success
  *             - 1 read temperature failed
@@ -898,7 +898,7 @@ uint8_t ms5837_read_temperature(ms5837_handle_t *handle, uint32_t *temperature_r
 
 /**
  * @brief     reset the device
- * @param[in] *handle points to an ms5837 handle structure
+ * @param[in] *handle pointer to an ms5837 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 reset failed
@@ -930,10 +930,10 @@ uint8_t ms5837_reset(ms5837_handle_t *handle)
 
 /**
  * @brief     set the chip register
- * @param[in] *handle points to an ms5837 handle structure
- * @param[in] reg is the iic register address
- * @param[in] *buf points to a data buffer
- * @param[in] len is the data buffer length
+ * @param[in] *handle pointer to an ms5837 handle structure
+ * @param[in] reg iic register address
+ * @param[in] *buf pointer to a data buffer
+ * @param[in] len data buffer length
  * @return    status code
  *            - 0 success
  *            - 1 write failed
@@ -967,10 +967,10 @@ uint8_t ms5837_set_reg(ms5837_handle_t *handle, uint8_t reg, uint8_t *buf, uint1
 
 /**
  * @brief      get the chip register
- * @param[in]  *handle points to an ms5837 handle structure
- * @param[in]  reg is the iic register address
- * @param[out] *buf points to a data buffer
- * @param[in]  len is the data buffer length
+ * @param[in]  *handle pointer to an ms5837 handle structure
+ * @param[in]  reg iic register address
+ * @param[out] *buf pointer to a data buffer
+ * @param[in]  len data buffer length
  * @return     status code
  *             - 0 success
  *             - 1 read failed
@@ -1004,7 +1004,7 @@ uint8_t ms5837_get_reg(ms5837_handle_t *handle, uint8_t reg, uint8_t *buf, uint1
 
 /**
  * @brief      get chip's information
- * @param[out] *info points to an ms5837 info structure
+ * @param[out] *info pointer to an ms5837 info structure
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL

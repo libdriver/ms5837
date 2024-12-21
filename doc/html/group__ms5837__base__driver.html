@@ -292,7 +292,7 @@ Functions</h2></td></tr>
 <p>close the chip </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -339,8 +339,8 @@ Functions</h2></td></tr>
 <p>get the adc pressure osr </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*osr</td><td>points to an osr buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*osr</td><td>pointer to an osr buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -385,8 +385,8 @@ Functions</h2></td></tr>
 <p>get the adc temperature osr </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*osr</td><td>points to an osr buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*osr</td><td>pointer to an osr buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -431,8 +431,8 @@ Functions</h2></td></tr>
 <p>get the device type </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*type</td><td>points to a type buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*type</td><td>pointer to a type buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -467,7 +467,7 @@ Functions</h2></td></tr>
 <p>get chip's information </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">*info</td><td>points to an ms5837 info structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*info</td><td>pointer to an ms5837 info structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -501,7 +501,7 @@ Functions</h2></td></tr>
 <p>initialize the chip </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -557,9 +557,9 @@ Functions</h2></td></tr>
 <p>read the pressure </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_raw</td><td>points to a raw pressure buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_mbar</td><td>points to a converted pressure buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_raw</td><td>pointer to a raw pressure buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_mbar</td><td>pointer to a converted pressure buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -611,9 +611,9 @@ Functions</h2></td></tr>
 <p>read the temperature </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_raw</td><td>points to a raw temperature buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_c</td><td>points to a converted temperature buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_raw</td><td>pointer to a raw temperature buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_c</td><td>pointer to a converted temperature buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -677,11 +677,11 @@ Functions</h2></td></tr>
 <p>read the temperature and pressure </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_raw</td><td>points to a raw temperature buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_c</td><td>points to a converted temperature buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_raw</td><td>points to a raw pressure buffer </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_mbar</td><td>points to a converted pressure buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_raw</td><td>pointer to a raw temperature buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*temperature_c</td><td>pointer to a converted temperature buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_raw</td><td>pointer to a raw pressure buffer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pressure_mbar</td><td>pointer to a converted pressure buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -717,7 +717,7 @@ Functions</h2></td></tr>
 <p>reset the device </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -763,8 +763,8 @@ Functions</h2></td></tr>
 <p>set the adc pressure osr </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">osr</td><td>is the adc osr </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">osr</td><td>adc osr </td></tr>
   </table>
   </dd>
 </dl>
@@ -810,8 +810,8 @@ Functions</h2></td></tr>
 <p>set the adc temperature osr </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">osr</td><td>is the adc osr </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">osr</td><td>adc osr </td></tr>
   </table>
   </dd>
 </dl>
@@ -857,8 +857,8 @@ Functions</h2></td></tr>
 <p>set the device type </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>points to an ms5837 handle structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>is the device type </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*handle</td><td>pointer to an ms5837 handle structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>device type </td></tr>
   </table>
   </dd>
 </dl>

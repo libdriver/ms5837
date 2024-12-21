@@ -40,8 +40,8 @@ static ms5837_handle_t gs_handle;        /**< ms5837 handle */
 
 /**
  * @brief     read test
- * @param[in] type is the device type
- * @param[in] times is the test times
+ * @param[in] type device type
+ * @param[in] times test times
  * @return    status code
  *            - 0 success
  *            - 1 test failed
