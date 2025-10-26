@@ -10,7 +10,7 @@
 
 The MS5837 consists of a piezo-resistive sensor and a sensor interface integrated circuit. The main function of the MS5837 is to convert the uncompensated analogue output voltage from the piezo-resistive pressure sensor to a 24-bit digital value, as well as providing a 24-bit digital value for the temperature of the sensor.It can be used in fitness trackers, drones, bike computers and so on.
 
-LibDriver MS5837 is a full-featured driver of MS5837 launched by LibDriver.It provides temperature reading, pressure reading and other functions. LibDriver is MISRA compliant.
+LibDriver MS5837 is a full-featured driver for MS5837, launched by LibDriver.It provides temperature reading, pressure reading and additional features. LibDriver is MISRA compliant.
 
 ### Table of Contents
 
