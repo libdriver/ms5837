@@ -308,7 +308,6 @@ uint8_t ms5837_get_type(ms5837_handle_t *handle, ms5837_type_t *type);
  *            - 0 success
  *            - 2 handle is NULL
  *            - 3 handle is not initialized
- *            - 4 30ba26 can't support osr 8192
  * @note      none
  */
 uint8_t ms5837_set_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t osr);
@@ -333,7 +332,6 @@ uint8_t ms5837_get_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t *osr);
  *            - 0 success
  *            - 2 handle is NULL
  *            - 3 handle is not initialized
- *            - 4 30ba26 can't support osr 8192
  * @note      none
  */
 uint8_t ms5837_set_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t osr);

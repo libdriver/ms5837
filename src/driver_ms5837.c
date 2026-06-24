@@ -44,7 +44,7 @@
 #define SUPPLY_VOLTAGE_MIN        1.5f               /**< chip min supply voltage */
 #define SUPPLY_VOLTAGE_MAX        3.6f               /**< chip max supply voltage */
 #define MAX_CURRENT               1.25f              /**< chip max current */
-#define TEMPERATURE_MIN           -40.0f             /**< chip min operating temperature */
+#define TEMPERATURE_MIN           -20.0f             /**< chip min operating temperature */
 #define TEMPERATURE_MAX           85.0f              /**< chip max operating temperature */
 #define DRIVER_VERSION            1000               /**< driver version */
 
@@ -524,31 +524,22 @@ uint8_t ms5837_get_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t *osr)
  *            - 0 success
  *            - 2 handle is NULL
  *            - 3 handle is not initialized
- *            - 4 30ba26 can't support osr 8192
  * @note      none
  */
 uint8_t ms5837_set_temperature_osr(ms5837_handle_t *handle, ms5837_osr_t osr)
 {
-    if (handle == NULL)                                                         /* check handle */
+    if (handle == NULL)                       /* check handle */
     {
-        return 2;                                                               /* return error */
+        return 2;                             /* return error */
     }
-    if (handle->inited != 1)                                                    /* check handle initialization */
+    if (handle->inited != 1)                  /* check handle initialization */
     {
-        return 3;                                                               /* return error */
-    }
-    if ((handle->type == MS5837_TYPE_30BA26)
-        && (osr == MS5837_OSR_8192)                                             /* check the osr */
-       )
-    {
-        handle->debug_print("ms5837: 30ba26 can't support osr 8192.\n");        /* 30ba26 can't support osr 8192 */
-        
-        return 4;                                                               /* return error */
+        return 3;                             /* return error */
     }
     
-    handle->temp_osr = (uint8_t)(osr);                                          /* set the osr */
+    handle->temp_osr = (uint8_t)(osr);        /* set the osr */
     
-    return 0;                                                                   /* success return 0 */
+    return 0;                                 /* success return 0 */
 }
 
 /**
@@ -585,31 +576,22 @@ uint8_t ms5837_get_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t *osr)
  *            - 0 success
  *            - 2 handle is NULL
  *            - 3 handle is not initialized
- *            - 4 30ba26 can't support osr 8192
  * @note      none
  */
 uint8_t ms5837_set_pressure_osr(ms5837_handle_t *handle, ms5837_osr_t osr)
 {
-    if (handle == NULL)                                                         /* check handle */
+    if (handle == NULL)                        /* check handle */
     {
-        return 2;                                                               /* return error */
+        return 2;                              /* return error */
     }
-    if (handle->inited != 1)                                                    /* check handle initialization */
+    if (handle->inited != 1)                   /* check handle initialization */
     {
-        return 3;                                                               /* return error */
-    }
-    if ((handle->type == MS5837_TYPE_30BA26)
-        && (osr == MS5837_OSR_8192)                                             /* check the osr */
-       )
-    {
-        handle->debug_print("ms5837: 30ba26 can't support osr 8192.\n");        /* 30ba26 can't support osr 8192 */
-        
-        return 4;                                                               /* return error */
+        return 3;                              /* return error */
     }
     
-    handle->press_osr = (uint8_t)(osr);                                         /* set the osr */
+    handle->press_osr = (uint8_t)(osr);        /* set the osr */
     
-    return 0;                                                                   /* success return 0 */
+    return 0;                                  /* success return 0 */
 }
 
 /**
@@ -640,7 +622,7 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
         return 3;                                                                              /* return error */
     }
     
-    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + handle->temp_osr, NULL, 0) != 0)            /* sent d2 */
+    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + (handle->temp_osr << 1), NULL, 0) != 0)     /* sent d2 */
     {
         handle->debug_print("ms5837: sent d2 failed.\n");                                      /* sent d2 failed */
         
@@ -664,11 +646,11 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
     }
     else if (handle->temp_osr == MS5837_OSR_4096)                                              /* osr 4096 */
     {
-        handle->delay_ms(9);                                                                   /* delay 9ms */
+        handle->delay_ms(10);                                                                  /* delay 10ms */
     }
     else                                                                                       /* osr 8192 */
     {
-        handle->delay_ms(18);                                                                  /* delay 18ms */
+        handle->delay_ms(20);                                                                  /* delay 20ms */
     }
     if (a_ms5837_iic_read(handle, MS5837_CMD_ADC_READ, buf, 3) != 0)                           /* read adc */
     {
@@ -678,7 +660,7 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
     }
     *temperature_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];        /* set the temperature raw */
     
-    if (a_ms5837_iic_write(handle, MS5837_CMD_D1 + handle->press_osr, NULL, 0) != 0)           /* sent d1 */
+    if (a_ms5837_iic_write(handle, MS5837_CMD_D1 + (handle->press_osr << 1), NULL, 0) != 0)    /* sent d1 */
     {
         handle->debug_print("ms5837: sent d1 failed.\n");                                      /* sent d1 failed */
         
@@ -702,11 +684,11 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
     }
     else if (handle->press_osr == MS5837_OSR_4096)                                             /* osr 4096 */
     {
-        handle->delay_ms(9);                                                                   /* delay 9ms */
+        handle->delay_ms(10);                                                                  /* delay 10ms */
     }
     else                                                                                       /* osr 8192 */
     {
-        handle->delay_ms(18);                                                                  /* delay 18ms */
+        handle->delay_ms(20);                                                                  /* delay 20ms */
     }
     if (a_ms5837_iic_read(handle, MS5837_CMD_ADC_READ, buf, 3) != 0)                           /* read adc */
     {
@@ -714,7 +696,7 @@ uint8_t ms5837_read_temperature_pressure(ms5837_handle_t *handle, uint32_t *temp
         
         return 1;                                                                              /* return error */
     }
-    *pressure_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];           /* set the temperature raw */
+    *pressure_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];           /* set the pressure raw */
     a_ms5837_calculate_temperature_pressure(handle, *temperature_raw, temperature_c, 
                                             *pressure_raw, pressure_mbar);                     /* calculate temperature and pressure */
     
@@ -748,7 +730,7 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
         return 3;                                                                              /* return error */
     }
     
-    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + handle->temp_osr, NULL, 0) != 0)            /* sent d2 */
+    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + (handle->temp_osr << 1), NULL, 0) != 0)     /* sent d2 */
     {
         handle->debug_print("ms5837: sent d2 failed.\n");                                      /* sent d2 failed */
         
@@ -772,11 +754,11 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
     }
     else if (handle->temp_osr == MS5837_OSR_4096)                                              /* osr 4096 */
     {
-        handle->delay_ms(9);                                                                   /* delay 9ms */
+        handle->delay_ms(10);                                                                  /* delay 10ms */
     }
     else                                                                                       /* osr 8192 */
     {
-        handle->delay_ms(18);                                                                  /* delay 18ms */
+        handle->delay_ms(20);                                                                  /* delay 20ms */
     }
     if (a_ms5837_iic_read(handle, MS5837_CMD_ADC_READ, buf, 3) != 0)                           /* read adc */
     {
@@ -786,7 +768,7 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
     }
     temperature_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];         /* set the temperature raw */
     
-    if (a_ms5837_iic_write(handle, MS5837_CMD_D1 + handle->press_osr, NULL, 0) != 0)           /* sent d1 */
+    if (a_ms5837_iic_write(handle, MS5837_CMD_D1 + (handle->press_osr << 1), NULL, 0) != 0)    /* sent d1 */
     {
         handle->debug_print("ms5837: sent d1 failed.\n");                                      /* sent d1 failed */
         
@@ -810,11 +792,11 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
     }
     else if (handle->press_osr == MS5837_OSR_4096)                                             /* osr 4096 */
     {
-        handle->delay_ms(9);                                                                   /* delay 9ms */
+        handle->delay_ms(10);                                                                  /* delay 10ms */
     }
     else                                                                                       /* osr 8192 */
     {
-        handle->delay_ms(18);                                                                  /* delay 18ms */
+        handle->delay_ms(20);                                                                  /* delay 20ms */
     }
     if (a_ms5837_iic_read(handle, MS5837_CMD_ADC_READ, buf, 3) != 0)                           /* read adc */
     {
@@ -822,7 +804,7 @@ uint8_t ms5837_read_pressure(ms5837_handle_t *handle, uint32_t *pressure_raw, fl
         
         return 1;                                                                              /* return error */
     }
-    *pressure_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];           /* set the temperature raw */
+    *pressure_raw = (((uint32_t)buf[0]) << 16) | (((uint32_t)buf[1]) << 8) | buf[2];           /* set the pressure raw */
     a_ms5837_calculate_temperature_pressure(handle, temperature_raw, &temperature_c, 
                                             *pressure_raw, pressure_mbar);                     /* calculate temperature and pressure */
     
@@ -854,7 +836,7 @@ uint8_t ms5837_read_temperature(ms5837_handle_t *handle, uint32_t *temperature_r
         return 3;                                                                              /* return error */
     }
     
-    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + handle->temp_osr, NULL, 0) != 0)            /* sent d2 */
+    if (a_ms5837_iic_write(handle, MS5837_CMD_D2 + (handle->temp_osr << 1), NULL, 0) != 0)     /* sent d2 */
     {
         handle->debug_print("ms5837: sent d2 failed.\n");                                      /* sent d2 failed */
         
@@ -878,11 +860,11 @@ uint8_t ms5837_read_temperature(ms5837_handle_t *handle, uint32_t *temperature_r
     }
     else if (handle->temp_osr == MS5837_OSR_4096)                                              /* osr 4096 */
     {
-        handle->delay_ms(9);                                                                   /* delay 9ms */
+        handle->delay_ms(10);                                                                  /* delay 10ms */
     }
     else                                                                                       /* osr 8192 */
     {
-        handle->delay_ms(18);                                                                  /* delay 18ms */
+        handle->delay_ms(20);                                                                  /* delay 20ms */
     }
     if (a_ms5837_iic_read(handle, MS5837_CMD_ADC_READ, buf, 3) != 0)                           /* read adc */
     {

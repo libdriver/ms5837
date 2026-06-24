@@ -83,7 +83,7 @@ ms5837: min supply voltage is 1.5V.
 ms5837: max supply voltage is 3.6V.
 ms5837: max current is 1.25mA.
 ms5837: max temperature is 85.0C.
-ms5837: min temperature is -40.0C.
+ms5837: min temperature is -20.0C.
 ```
 
 ```shell
