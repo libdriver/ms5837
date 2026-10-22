@@ -161,16 +161,16 @@ static uint8_t a_ms5837_crc4(uint16_t n_prom[8])
 static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uint32_t d2_temp, float *temperature_c, 
                                                     uint32_t d1_press, float *pressure_mbar)
 {
+    int32_t p;
+    int32_t temp;
     int32_t dt = 0;
     int64_t sens = 0;
     int64_t off = 0;
-    int32_t sensi = 0;
-    int32_t offi = 0;
+    int64_t sensi = 0;
+    int64_t offi = 0;
     int32_t ti = 0;
     int64_t off2 = 0;
     int64_t sens2 = 0;
-    int32_t p;
-    int32_t temp;
 
     dt = d2_temp - (uint32_t)(handle->c[4]) * 256;                                            /* get the dt */
     if ((handle->type == MS5837_TYPE_02BA01) || (handle->type == MS5837_TYPE_02BA21))         /* 02ba01 and 02ba21 */
@@ -191,8 +191,8 @@ static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uin
         if ((temp / 100) < 20)                                                                /* if < 20 */
         {
             ti = (int32_t)((11 * (int64_t)(dt) * (int64_t)(dt)) / 34359738368U);              /* get the ti */
-            offi = (31 * (temp - 2000) * (temp - 2000)) / 8;                                  /* get the offi */
-            sensi = (63 * (temp - 2000) * (temp - 2000)) / 32;                                /* get the sensi */
+            offi = (int64_t)31 * (temp - 2000) * (temp - 2000) / 8;                           /* get the offi */
+            sensi = (int64_t)63 * (temp - 2000) * (temp - 2000) / 32;                         /* get the sensi */
         }
     }
     else
@@ -200,18 +200,18 @@ static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uin
         if ((temp / 100) < 20)                                                                /* if < 20 */
         {
             ti = (int32_t)((3 * (int64_t)(dt) * (int64_t)(dt)) / 8589934592U);                /* get the ti */
-            offi = (3 * (temp - 2000) * (temp - 2000)) / 2;                                   /* get the offi */
-            sensi = (5 * (temp - 2000) * (temp - 2000)) / 8;                                  /* get the sensi */
+            offi = (int64_t)3 * (temp - 2000) * (temp - 2000) / 2;                            /* get the offi */
+            sensi = (int64_t)5 * (temp - 2000) * (temp - 2000) / 8;                           /* get the sensi */
             if ((temp / 100) < -15)                                                           /* if < -15 */
             {
-                offi = offi + 7 * (temp + 1500) * (temp + 1500);                              /* get the offi */
-                sensi = sensi + 4 * (temp + 1500) * (temp + 1500);                            /* get the sensi */
+                offi = offi + (int64_t)7 * (temp + 1500) * (temp + 1500);                     /* get the offi */
+                sensi = sensi + (int64_t)4 * (temp + 1500) * (temp + 1500);                   /* get the sensi */
             }
         }
         else
         {
-            ti = (int32_t)(2 * (dt * dt) / 137438953472U);                                    /* get the ti */
-            offi = (1 * (temp - 2000) * (temp - 2000)) / 16;                                  /* get the offi */
+            ti = (int32_t)((2 * (int64_t)(dt) * (int64_t)(dt)) / 137438953472U);              /* get the ti */
+            offi = (int64_t)1 * (temp - 2000) * (temp - 2000) / 16;                           /* get the offi */
             sensi = 0;                                                                        /* get the sensi */
         }
     }
@@ -240,9 +240,9 @@ static void a_ms5837_calculate_temperature_pressure(ms5837_handle_t *handle, uin
  */
 static void a_ms5837_calculate_temperature(ms5837_handle_t *handle, uint32_t d2_temp, float *temperature_c)
 {
+    int32_t temp;
     int32_t dt = 0;
     int32_t ti = 0;
-    int32_t temp;
 
     dt = d2_temp - (uint32_t)(handle->c[4]) * 256;                                           /* get the dt */
     temp = 2000 + (int64_t)(dt) * handle->c[5] / 8388608;                                    /* get the temp */
@@ -261,7 +261,7 @@ static void a_ms5837_calculate_temperature(ms5837_handle_t *handle, uint32_t d2_
         }
         else
         {
-            ti = (int32_t)((2 * (dt * dt)) / 137438953472U);                                 /* get the ti */
+            ti = (int32_t)((2 * (int64_t)(dt) * (int64_t)(dt)) / 137438953472U);             /* get the ti */
         }
     }
     temp = (temp - ti);                                                                      /* get the temp */
